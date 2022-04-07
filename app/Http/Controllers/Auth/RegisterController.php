@@ -86,6 +86,7 @@ class RegisterController extends Controller
     }
 
     public function added(){
-        return view('auth.added');
+        $list = \DB::table('users')->latest()->first();
+        return view('auth.added', compact('list'));
     }
 }
