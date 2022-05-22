@@ -39,5 +39,5 @@ Route::get('/search','UsersController@index');
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
 
-
-
+//投稿機能
+Route::post('/post/create','PostsController@create');
