@@ -28,6 +28,7 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
 
+Route::get('/logout','Auth\LoginController@logout');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index');
@@ -35,9 +36,22 @@ Route::get('/top','PostsController@index');
 Route::get('/profile','UsersController@profile');
 
 Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search');
+Route::post('/search','UsersController@search');
+Route::post('/search', 'UsersController@users_search');
 
+Route::get('/post/follow','PostsController@follow');
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
 
 //投稿機能
 Route::post('/post/create','PostsController@create');
+Route::get('/post/{id}/delete', 'PostsController@delete');
+Route::post('post/update', 'PostsController@update');
+
+//フォロー機能
+Route::post('/users/{user}/follow', 'FollowsController@follow');
+Route::post('/users/{user}/unfollow', 'FollowsController@unfollow');
+Route::group(['middleware' => 'auth'], function() {
+Route::get('/show','FollowsController@show');
+});
