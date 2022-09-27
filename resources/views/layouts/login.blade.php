@@ -26,10 +26,9 @@
     <header>
         <div id = "head">
         <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
-            <div id="">
-                    <p class="nav-open">{{ $list->username }}さん<img src="images/dawn.png"></p>
+                <p class="nav-open">{{ $auth->username }}さん<img src="images/dawn.png"></p>
                 <nav>
-                <ul>
+                <ul class="accordion-area">
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
@@ -43,10 +42,10 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ $list->username }}さんの</p>
+                <p>{{ $auth->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>{{ optional($follow)->follow_id }}名</p>
+                <p>名</p>
                 </div>
                 <p class="btn"><a href="">フォローリスト</a></p>
                 <div>

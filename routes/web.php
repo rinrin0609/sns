@@ -38,7 +38,6 @@ Route::get('/profile','UsersController@profile');
 Route::get('/search','UsersController@index');
 Route::get('/search','UsersController@search');
 Route::post('/search','UsersController@search');
-Route::post('/search', 'UsersController@users_search');
 
 Route::get('/post/follow','PostsController@follow');
 Route::get('/follow-list','PostsController@index');
@@ -49,9 +48,6 @@ Route::post('/post/create','PostsController@create');
 Route::get('/post/{id}/delete', 'PostsController@delete');
 Route::post('post/update', 'PostsController@update');
 
-//フォロー機能
-Route::post('/users/{user}/follow', 'FollowsController@follow');
-Route::post('/users/{user}/unfollow', 'FollowsController@unfollow');
-Route::group(['middleware' => 'auth'], function() {
-Route::get('/show','FollowsController@show');
-});
+//フォローする、しない
+Route::post('/follow/create', 'UsersController@follow');
+Route::post('/follow/delete', 'UsersController@unfollow');

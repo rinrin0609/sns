@@ -9,18 +9,34 @@
 </form>
 </div>
 
-@if(isset($users))
+@if(!$users->isEmpty())
 <table>
 @foreach($users as $user)
   <tr>
     <td>{{$user->image}}</td>
     <td>{{$user->username}}</td>
+    @if($auth->id != $user->id)
+@if($followings->contains('follow_id',$user->id))
+    <form action="/follow/delete" method="POST">
+    {{ csrf_field() }}
+    <input type="hidden" name="id" value="{{$user->id }}">
+    <button type="submit" class="btn btn-danger">フォロー解除</button>
+    </form>
+@else
+    <form action="/follow/create" method="POST">
+    {{ csrf_field() }}
+    <input type="hidden" name="id" value="{{$user->id }}">
+    <button type="submit" class="btn btn-primary">フォローする</button>
+    </form>
+@endif
+@else
+<td></td>
+<td></td>
+@endif
   </tr>
 @endforeach
 </table>
+@else
+<p>検索結果はありません</p>
 @endif
-@if(!empty($message))
-<div class="alert alert-primary" role="alert">{{ $message}}</div>
-@endif
-</div>
 @endsection

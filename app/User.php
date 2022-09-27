@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\User;
+use App\Follow;
 
 class User extends Authenticatable
 {
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'mail', 'password',
+        'id', 'username', 'mail', 'password', 'image'
     ];
 
     /**
@@ -28,34 +30,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function follow($user_id)
-    {
+    public function follow(Int $user_id){
         return $this->follows()->attach($user_id);
     }
 
-    public function unfollow($user_id)
-    {
+    public function unfollow(Int $user_id){
         return $this->follows()->detach($user_id);
     }
 
-    public function isFollowing($user_id)
-    {
-        return (boolean) $this->follows()->where('followed_id', $user_id)->exists();
+    public function isFollowing(Int $user_id){
+        return (boolean) $this->follows()->where('followed_id', $user_id)->first();
     }
 
-    public function isFollowed($user_id)
-    {
-        return (boolean) $this->followers()->where('following_id', $user_id)->exists();
+    public function isFollowed(Int $user_id){
+        return (boolean) $this->followers()->where('following_id', $user_id)->first();
     }
 
-    // フォロワー→フォロー
-    public function followUsers(){
-        return $this->belongsToMany('App\User', 'follows', 'follow_id', 'follower_id');
-    }
-
-    // フォロー→フォロワー
-    public function follows()
-    {
-        return $this->belongsToMany('App\User', 'follows', 'follower_id', 'follow_id');
-    }
 }

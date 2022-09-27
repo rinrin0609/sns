@@ -35,21 +35,4 @@ class FollowsController extends Controller
             'follower_count' => $follower_count
         ]);
     }
-
-    public function follow(User $user){
-        $follow = Follow::create([
-            'follow_id' => \Auth::user()->id,
-            'follower_id' => $user->id,
-        ]);
-        $followCount = count(Follow::where('follower_id', $user->id)->get());
-        return response()->json(['followCount' => $followCount]);
-    }
-
-    public function unfollow(User $user){
-        $follow = FollowUser::where('follow_id', \Auth::user()->id)->where('follower_id', $user->id)->first();
-        $follow->delete();
-        $followCount = count(Follow::where('follower_id', $user->id)->get());
-
-        return response()->json(['followCount' => $followCount]);
-    }
 }
