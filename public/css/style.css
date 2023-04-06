@@ -25,6 +25,16 @@ header {
     border-left: 1px solid #6C6C6C;
 }
 
+/*トップ画面*/
+.head {
+    color: #fff;
+}
+
+.top {
+    text-align: left;
+    height: 80px;
+}
+
 /*アコーディオンメニュー*/
 nav {
     display: none;
@@ -35,19 +45,65 @@ nav {
     color: #fff;
     font-size: 20px;
     background: #3C4767;
-    position: relative;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.nav-open img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
 
 .nav-open::before {
     /* 閉じている時 */
     content: "+";
     position: absolute;
-    right: 20px;
+    right: 1px;
 }
 
 .nav-open.active::before {
     /* 開いている時 */
     content: "-";
+}
+
+.nav-area {
+    text-align: center;
+}
+
+.accordion-area {
+    position: absolute;
+    right: 0;
+    top: 70px;
+    background-color: #fff;
+    width: 300px;
+    height: 300px;
+}
+
+.accordion-area li {
+    text-align: center;
+    border: 1px solid #000;
+    border-bottom: none;
+    height: 50px;
+}
+
+.accordion-area li:last-child {
+    border-bottom: 1px solid #000;
+}
+
+.accordion-area li:hover {
+    color: #fff;
+    background-color: #ff4500;
+}
+
+.accordion-area a {
+    padding: 20px;
+    color: #000;
+}
+
+.accordion-area a:hover {
+    color: #fff;
 }
 
 /* モーダルのスタイル */
@@ -57,6 +113,88 @@ nav {
 }
 
 .edit-img {
-    /*カーソル設定をします。（.send-button）というお問い合わせボタンで使用したクラスを反映しているので、その他のスタイルは自動的に反映される。 */
     cursor: pointer;
+}
+
+/* 投稿スペース */
+.create {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 10px solid #C0C0C0;
+}
+
+.create-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.form-control {
+    width: 80%;
+    height: 60px;
+    border: none;
+    vertical-align: top;
+}
+
+/* つぶやき閲覧 */
+.tweet-list {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+}
+
+.tweet-img {
+    width: 100px;
+    height: 100px;
+}
+
+.profile-img {
+    display: block;
+    text-align: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.post-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.post-status {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.tweet-username {
+    font-size: 12px;
+    padding: 20px 10px 10px 0px;
+    height: 12px;
+    width: 100px;
+    vertical-align: top;
+}
+
+.tweet-created-at {
+    text-align: right;
+    font-size: 12px;
+    padding: 20px 10px 10px 0px;
+    height: 12px;
+    vertical-align: top;
+}
+
+.tweet-post {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    height: 100px;
+    width: 100%;
+    display: block;
+}
+
+/* フォローリスト */
+.follow-list {
+    display: flex;
 }

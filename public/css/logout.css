@@ -1,10 +1,10 @@
-@chasert "utf-8";
+@charset "utf-8";
 
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,18 +12,107 @@ body{
     text-align: center;
     color: #FFFFFF;
     height: 100%;
-    background:linear-gradient(#3C4767, 90%, #FF4F02
-);
+    background: linear-gradient(#3C4767, 90%, #FF4F02);
 }
 
-header{
+header {
     display: block;
     width: 300px;
     height: 200px;
 }
 
-#container{
+#container {
     display: block;
     width: 300px;
-    height: 300px;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255);
+    border-radius: 5px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login {
+    padding: 30px;
+    text-align: left;
+}
+
+.input {
+    width: 230px;
+    margin: 0px 0px 20px;
+}
+
+.login-btn {
+    text-align: right;
+    height: 20px;
+    background-color: #4169E1;
+    color: #FFF;
+}
+
+.login-btn-div {
+    text-align: right;
+}
+
+.register a {
+    color: #FFF;
+}
+
+/*新規ユーザー登録画面*/
+.new-user {
+    text-align: center;
+    margin: 20px 0px 20px;
+}
+
+.new-login {
+    padding: 30px;
+    text-align: left;
+}
+
+.register-input {
+    width: 230px;
+    margin: 0px 0px 20px;
+}
+
+.register-btn {
+    text-align: right;
+    height: 20px;
+    background-color: #4169E1;
+    color: #FFF;
+}
+
+.register-btn-div {
+    text-align: right;
+}
+
+.login-back {
+    text-align: center;
+}
+
+.login-back a {
+    color: #FFF;
+}
+
+/*新規登録完了画面*/
+.clear {
+    text-align: center;
+    padding: 50px;
+}
+
+.btn {
+    display: inline-block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    background-color: #4169E1;
+    width: 150px;
+    height: 20px;
+}
+
+.btn a {
+    text-align: center;
+    color: #FFF;
 }

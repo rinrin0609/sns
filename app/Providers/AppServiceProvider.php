@@ -26,11 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $list = DB::table('users')->first();
-        View::share('list',$list);
-        $follow = DB::table('follows')
-        ->where('follow_id',Auth::id())
-        ->count();
-        View::share('follow',$follow);
+        view()->composer('*', function ($view)
+        {
+            //...with this variable
+            $view->with('follow_count',  DB::table('follows')->where('follower_id', Auth::id())->count());
+            $view->with('follower_count',  DB::table('follows')->where('follow_id', Auth::id())->count());
+        });
     }
 }

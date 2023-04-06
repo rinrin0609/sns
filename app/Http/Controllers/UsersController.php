@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Follow;
 
@@ -12,10 +13,11 @@ class UsersController extends Controller
 {
     //
     public function profile(){
-    $user_name = Auth::user()->username;
-    $email = Auth::user()->email;
+    $auth = Auth::user();
+    $username = Auth::user()->username;
+    $mail = Auth::user()->mail;
     $password = Auth::user()->password;
-    return view('users.profile');
+    return view('users.profile',compact('auth', 'username', 'mail', 'password'));
     }
 
     public function index() {
@@ -59,42 +61,58 @@ class UsersController extends Controller
         return back();
 }
 
-    public function show(User $user, Tweet $tweet, Follower $follower) {
-        $login_user = auth()->user();
-        $is_following = $login_user->isFollowing($user->id);
-        $is_followed = $login_user->isFollowed($user->id);
-        $timelines = $tweet->getUserTimeLine($user->id);
-        $tweet_count = $tweet->getTweetCount($user->id);
-        $follow_count = $follower->getFollowCount($user->id);
-        $follower_count = $follower->getFollowerCount($user->id);
-            return view('users.show', [
-            'user'           => $user,
-            'is_following'   => $is_following,
-            'is_followed'    => $is_followed,
-            'timelines'      => $timelines,
-            'tweet_count'    => $tweet_count,
-            'follow_count'   => $follow_count,
-            'follower_count' => $follower_count
+    public function follow_list() {
+        $users = DB::table('users')
+            ->leftjoin('follows', 'users.id', '=', 'follows.follow_id')
+            ->leftjoin('posts','posts.user_id','=','users.id')
+            ->where('follows.follower_id', '=', Auth::id())
+            ->select('users.id', 'users.username', 'users.images', 'posts.post', 'posts.created_at')
+            ->orderBy('posts.created_at', 'desc')
+            ->get();
+        $auth = Auth::user();
+        return view('follows.followList',compact('users', 'auth'));
+}
+
+    public function follower_list() {
+        $users = DB::table('users')
+            ->leftjoin('follows', 'users.id', '=', 'follows.follower_id')
+            ->leftjoin('posts','posts.user_id','=','users.id')
+            ->where('follows.follow_id', '=', Auth::id())
+            ->select('users.id', 'users.username', 'users.images', 'posts.post', 'posts.created_at')
+            ->orderBy('posts.created_at', 'desc')
+            ->get();
+        $auth = Auth::user();
+        return view('follows.followerList',compact('users', 'auth'));
+}
+
+    public function update(Request $request) {
+        $id = $request->input('id');
+        $auth = Auth::user();
+        //
+        if(!is_null($request->newpassword)){
+                $newpassword = Hash::make($request->newpassword);
+                DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'password'=> $newpassword
+                ]);
+            }
+        if(!is_null($request->images)){
+            $images = $request->file('images')->store('public/images');
+            DB::table('users')
+            ->where('id', $id)
+            ->update([
+                'images' => basename($images)
+            ]);
+        }
+        $users = DB::table('users')
+            ->where('id', $id)
+            ->update([
+            'username' => $request->input('username'),
+            'mail' => $request->input('mail'),
+            'bio' => $request->input('bio'),
+            //
         ]);
-    }
-
-     public function edit(User $user)
-    {
-        return view('users.edit', ['user' => $user]);
-    }
-
-    public function update(Request $request, User $user)
-    {
-        $data = $request->all();
-        $validator = Validator::make($data, [
-            'screen_name'   => ['required', 'string', 'max:50', Rule::unique('users')->ignore($user->id)],
-            'name'          => ['required', 'string', 'max:255'],
-            'profile_image' => ['file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-            'email'         => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)]
-        ]);
-        $validator->validate();
-        $user->updateProfile($data);
-
-        return redirect('users/'.$user->id);
-    }
+            return back();
+        }
 }

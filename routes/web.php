@@ -34,14 +34,18 @@ Route::get('/logout','Auth\LoginController@logout');
 Route::get('/top','PostsController@index');
 
 Route::get('/profile','UsersController@profile');
+Route::post('/profile','usersController@update');
 
-Route::get('/search','UsersController@index');
 Route::get('/search','UsersController@search');
 Route::post('/search','UsersController@search');
 
 Route::get('/post/follow','PostsController@follow');
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+Route::get('/followList','UsersController@follow_list');
+Route::post('/followList','UsersController@follow_list');
+Route::get('/followerList','UsersController@follower_list');
+Route::post('/followerList','UsersController@follower_list');
 
 //投稿機能
 Route::post('/post/create','PostsController@create');

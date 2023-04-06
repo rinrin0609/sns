@@ -13,7 +13,7 @@
 <table>
 @foreach($users as $user)
   <tr>
-    <td>{{$user->image}}</td>
+    <td><img src="{{ asset('/storage/images/' . $user->images) }}"></td>
     <td>{{$user->username}}</td>
     @if($auth->id != $user->id)
 @if($followings->contains('follow_id',$user->id))

@@ -1,33 +1,43 @@
 @extends('layouts.login')
 
 @section('content')
+<div class="create">
 {{ Form::open(['url' => '/post/create'])}}
+<img class="create-img" src="{{ asset('/storage/images/' . $auth->images) }}">
 {{ Form::text('post',null, ['class' => 'form-control', 'placeholder' => '何をつぶやこうか'])}}
-{{ Form::submit('投稿する')}}
+<input type="image" src="/images/post.png" alt="投稿ボタン">
 {{ Form::close()}}
+</div>
 
-<table>
+<div class="tweet-list">
   @foreach($posts_list as $list)
-    <tr>
-    <td><img src="/images/{{ $list -> images }}"></td>
-    <td>{{ $list->username }}</td>
-    <td>{{ $list ->post }}</td>
-    <td>{{ $list->created_at}}</td>
-    <td><div class="edit-content">
+    <div class="tweet-img"><img class="profile-img" src="{{ asset('/storage/images/' . $list->images) }}"></div>
+    <div class="post-wrapper">
+    <div class="post-status">
+    <div class="tweet-username">{{ $list->username }}</div>
+    <div class="tweet-created-at">{{ $list->created_at}}</div>
+    </div>
+    <div class="tweet-post">{{ $list ->post }}</div>
+    @if($auth->id === $list->user_id)
+    <div class="edit-content">
     <a href="" class="modalopen" data-target="{{ $list->id }}">
+    {{ csrf_field() }}
       <img class="edit-img" src="/images/edit.png" alt="更新">
     </a>
     </div>
+    </div>
+    <div class="post-icons">
     <div class="modal-main js-modal" id="{{ $list->id }}">
             {{ Form::open(['url' => '/post/update']) }}
             {{ Form::hidden('id', $list->id) }}
             {{ Form::input('text', 'upPost', $list->post, ['required', 'class' => 'form-control']) }}
             <input type="image" src="/images/edit.png" alt="更新ボタン">
             {{ Form::close() }}
+    {{ csrf_field() }}
     </div>
-    </td>
-    <td><a href="/post/{{$list ->id}}/delete"onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"> <img src="{{ asset('images/trash_h.png') }}" alt="削除" ></a></td>
-  </tr>
+    </div>
+    <a href="/post/{{$list ->id}}/delete"onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"> <img class="edit-img" src="{{ asset('images/trash_h.png') }}" alt="削除" ></a>
+  @endif
   @endforeach
-</table>
+</div>
 @endsection

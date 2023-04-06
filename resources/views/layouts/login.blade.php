@@ -19,21 +19,23 @@
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
     <!-- Javascript・jQueryのファイルリンク -->
-    <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </head>
 <body>
-    <header>
+    <header class="top">
         <div id = "head">
-        <h1><a href="/top"><img src="images/main_logo.png"></a></h1>
-                <p class="nav-open">{{ $auth->username }}さん<img src="images/dawn.png"></p>
-                <nav>
-                <ul class="accordion-area">
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
-                </nav>
+        <a href="/top"><img src="images/main_logo.png" alt="トップ画像"></a>
+        </div>
+        <div class="nav-area">
+        <p class="nav-open">{{ $auth->username }}さん<img src="{{ asset('/storage/images/' . $auth->images) }}"></p>
+        <nav>
+        <ul class="accordion-area">
+        <li><a href="/top">ホーム</a></li>
+        <li><a href="/profile">プロフィール</a></li>
+        <li><a href="/logout">ログアウト</a></li>
+        </ul>
+        </nav>
         </div>
     </header>
     <div id="row">
@@ -42,18 +44,20 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
+                <div class="side-list">
                 <p>{{ $auth->username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>名</p>
+                <p>{{ $follow_count }}名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/followList">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>名</p>
+                <p>{{ $follower_count }}名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
             <p class="btn"><a href="/search">ユーザー検索</a></p>
+            </div>
             </div>
         </div>
     </div>
