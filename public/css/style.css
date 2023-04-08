@@ -175,14 +175,15 @@ nav {
     height: 12px;
     width: 100px;
     vertical-align: top;
+    flex-basis: 80%;
 }
 
 .tweet-created-at {
-    text-align: right;
     font-size: 12px;
     padding: 20px 10px 10px 0px;
     height: 12px;
     vertical-align: top;
+    flex-basis: 20%;
 }
 
 .tweet-post {
@@ -192,6 +193,11 @@ nav {
     height: 100px;
     width: 100%;
     display: block;
+}
+
+.edit-content {
+    text-align: right;
+    margin-right: 20px;
 }
 
 /* フォローリスト */

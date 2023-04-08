@@ -22,22 +22,11 @@
     <div class="edit-content">
     <a href="" class="modalopen" data-target="{{ $list->id }}">
     {{ csrf_field() }}
-      <img class="edit-img" src="/images/edit.png" alt="更新">
+    <img class="edit-img" src="/images/edit.png" alt="更新">
     </a>
-    </div>
-    </div>
-    <div class="post-icons">
-    <div class="modal-main js-modal" id="{{ $list->id }}">
-            {{ Form::open(['url' => '/post/update']) }}
-            {{ Form::hidden('id', $list->id) }}
-            {{ Form::input('text', 'upPost', $list->post, ['required', 'class' => 'form-control']) }}
-            <input type="image" src="/images/edit.png" alt="更新ボタン">
-            {{ Form::close() }}
-    {{ csrf_field() }}
-    </div>
-    </div>
     <a href="/post/{{$list ->id}}/delete"onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"> <img class="edit-img" src="{{ asset('images/trash_h.png') }}" alt="削除" ></a>
-  @endif
-  @endforeach
+  </div>
 </div>
+@endif
+@endforeach
 @endsection
