@@ -4,6 +4,7 @@ $(function () {
     var target = $(this).data('target');
     var modal = document.getElementById(target);
     $(modal).fadeIn();
+    console.log(target);
     return false;
   });
 });
