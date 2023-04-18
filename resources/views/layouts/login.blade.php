@@ -40,22 +40,26 @@
     </header>
     <div id="row">
         <div id="container">
-            @yield('content')
+        @yield('content')
         </div >
         <div id="side-bar">
             <div id="confirm">
                 <div class="side-list">
-                <p>{{ $auth->username }}さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>{{ $follow_count }}名</p>
+                <p class="side-menu">{{ $auth->username }}さんの</p>
+                <div class="follow-count">
+                <p class="side-menu">フォロー数</p>
+                <p class="count">{{ $follow_count }}名</p>
                 </div>
+                <div class="list-btn">
                 <p class="btn"><a href="/followList">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>{{ $follower_count }}名</p>
                 </div>
+                <div class="follower-count">
+                <p class="side-menu">フォロワー数</p>
+                <p class="count">{{ $follower_count }}名</p>
+                </div>
+                <div class="list-btn">
                 <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
+                </div>
             <p class="btn"><a href="/search">ユーザー検索</a></p>
             </div>
             </div>
