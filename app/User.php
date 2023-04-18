@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\User;
+use App\Follow;
 
 class User extends Authenticatable
 {
+
     use Notifiable;
 
     /**
@@ -15,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'mail', 'password',
+        'id', 'username', 'mail', 'password', 'image'
     ];
 
     /**
@@ -26,4 +29,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function follow(Int $user_id){
+        return $this->follows()->attach($user_id);
+    }
+
+    public function unfollow(Int $user_id){
+        return $this->follows()->detach($user_id);
+    }
+
+    public function isFollowing(Int $user_id){
+        return (boolean) $this->follows()->where('followed_id', $user_id)->first();
+    }
+
+    public function isFollowed(Int $user_id){
+        return (boolean) $this->followers()->where('following_id', $user_id)->first();
+    }
+
 }
