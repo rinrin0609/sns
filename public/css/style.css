@@ -22,7 +22,7 @@ header {
 
 #side-bar {
     flex: 0 0 19%;
-    border-left: 1px solid #6C6C6C;
+    border-left: 5px solid #C0C0C0;
 }
 
 /*トップ画面*/
@@ -73,19 +73,20 @@ nav {
 }
 
 .accordion-area {
+    display: block;
     position: absolute;
     right: 0;
     top: 70px;
     background-color: #fff;
     width: 300px;
-    height: 300px;
 }
+
 
 .accordion-area li {
     text-align: center;
     border: 1px solid #000;
     border-bottom: none;
-    height: 50px;
+    padding: 30px;
 }
 
 .accordion-area li:last-child {
@@ -98,12 +99,7 @@ nav {
 }
 
 .accordion-area a {
-    padding: 20px;
     color: #000;
-}
-
-.accordion-area a:hover {
-    color: #fff;
 }
 
 .edit-img {
@@ -136,6 +132,7 @@ nav {
     text-align: left;
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid #C0C0C0;
 }
 
 .tweet-img {
@@ -194,11 +191,6 @@ nav {
     margin-right: 20px;
 }
 
-/* フォローリスト */
-.follow-list {
-    display: flex;
-}
-
 /* 投稿編集画面 */
 .modal-main {
     display: none;
@@ -238,16 +230,14 @@ nav {
 }
 
 /* サイドバー */
-.side-list {
-    padding: 10px;
-}
-
 .follow-count {
     display: flex;
+    margin: 15px;
 }
 
 .follower-count {
     display: flex;
+    margin: 15px;
 }
 
 .side-menu {
@@ -264,10 +254,8 @@ nav {
 .list-btn {
     display: flex;
     justify-content: center;
-    padding: 20px 20px 0 20px;
     text-align: center;
     width: 150px;
-    height: 50px;
     margin-right: 0;
     margin-left: auto;
     background-color: #3C4767;
@@ -276,4 +264,64 @@ nav {
 
 .list-btn a {
     color: #fff;
+}
+
+.list-btn-p {
+    padding: 10px;
+}
+
+.user-count-list {
+    padding: 10px 0 20px 10px;
+    border-bottom: 1px solid #C0C0C0;
+}
+
+.user-search {
+    text-align: center;
+    width: 150px;
+    margin: auto;
+    background-color: #3C4767;
+    border-radius: 5px;
+}
+
+.user-search a {
+    color: #fff;
+}
+
+.user-search-btn {
+    padding: 10px;
+    margin-top: 30px;
+}
+
+/* フォロワーリスト */
+.follower-title {
+    text-align: left;
+    font-size: 20px;
+    color: #666666;
+    margin: 10px;
+}
+
+.follow-list {
+    display: flex;
+    width: 100px;
+    height: 100px;
+}
+
+.follow-list a {
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+
+
+.follow-img img {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+/* フォローリスト */
+.follow-list {
+    display: flex;
 }

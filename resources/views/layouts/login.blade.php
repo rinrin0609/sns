@@ -31,9 +31,9 @@
         <p class="nav-open">{{ $auth->username }}さん<img src="{{ asset('/storage/images/' . $auth->images) }}"></p>
         <nav>
         <ul class="accordion-area">
-        <li><a href="/top">ホーム</a></li>
-        <li><a href="/profile">プロフィール</a></li>
-        <li><a href="/logout">ログアウト</a></li>
+        <li class="modal-menu"><a href="/top">ホーム</a></li>
+        <li class="modal-menu"><a href="/profile">プロフィール</a></li>
+        <li class="modal-menu"><a href="/logout">ログアウト</a></li>
         </ul>
         </nav>
         </div>
@@ -42,28 +42,32 @@
         <div id="container">
         @yield('content')
         </div >
-        <div id="side-bar">
-            <div id="confirm">
-                <div class="side-list">
-                <p class="side-menu">{{ $auth->username }}さんの</p>
-                <div class="follow-count">
-                <p class="side-menu">フォロー数</p>
-                <p class="count">{{ $follow_count }}名</p>
+            <div id="side-bar">
+                <div id="confirm">
+                    <div class="side-list">
+                        <div class="user-count-list">
+                        <p class="side-menu">{{ $auth->username }}さんの</p>
+                        <div class="follow-count">
+                        <p class="side-menu">フォロー数</p>
+                        <p class="count">{{ $follow_count }}名</p>
+                        </div>
+                        <div class="list-btn">
+                        <p class="list-btn-p"><a href="/followList">フォローリスト</a></p>
+                        </div>
+                        <div class="follower-count">
+                        <p class="side-menu">フォロワー数</p>
+                        <p class="count">{{ $follower_count }}名</p>
+                        </div>
+                        <div class="list-btn">
+                        <p class="list-btn-p"><a href="/followerList">フォロワーリスト</a></p>
+                        </div>
+                        </div>
+                        <div class="user-search">
+                        <p class="user-search-btn"><a href="/search">ユーザー検索</a></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="list-btn">
-                <p class="btn"><a href="/followList">フォローリスト</a></p>
-                </div>
-                <div class="follower-count">
-                <p class="side-menu">フォロワー数</p>
-                <p class="count">{{ $follower_count }}名</p>
-                </div>
-                <div class="list-btn">
-                <p class="btn"><a href="/followerList">フォロワーリスト</a></p>
-                </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
             </div>
-            </div>
-        </div>
     </div>
     <footer>
     </footer>
