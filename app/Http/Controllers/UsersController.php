@@ -115,4 +115,24 @@ class UsersController extends Controller
         ]);
             return back();
         }
+
+    public function user_follow(Request $request) {
+        $id = $request->input('id');
+        DB::table('follows')
+        ->insert([
+            'follow_id' => $id,
+            'follower_id' => Auth::id(),
+        ]);
+        return view('follows.user',compact('id'));
+    }
+
+    public function user_unfollow(Request $request) {
+        $id = $request->input('id');
+        DB::table('follows')
+        ->where([
+            'follow_id' => $id,
+            'follower_id' => Auth::id(),
+        ])->delete();
+        return view('follows.user',compact('id'));
+}
 }
