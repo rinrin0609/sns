@@ -5,7 +5,7 @@
 <div class="follow-list-img">
   @foreach($users as $user)
       <div class="follow-img">
-        <a href="/user"><img src="{{ asset('/storage/images/' . $user->images) }}"></a>
+        <a href="/user/{{ $user->id }}"><img src="{{ asset('/storage/images/' . $user->images) }}"></a>
       </div>
   @endforeach
 </div>
@@ -13,7 +13,7 @@
 @foreach($users as $user)
 <div class="tweet-list">
     <div class="tweet-img">
-      <a href="/user"><img src="{{ asset('/storage/images/' . $user->images) }}"></a>
+      <a href="/user/{{ $user->id }}"><img src="{{ asset('/storage/images/' . $user->images) }}"></a>
     </div>
     <div class="post-wrapper">
       <div class="post-status">
