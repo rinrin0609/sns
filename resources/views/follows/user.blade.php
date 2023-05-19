@@ -1,27 +1,32 @@
 @extends('layouts.login')
 
 @section('content')
-{!! Form::open(['url' => '/user', 'files' => true ]) !!}
-{!! Form::hidden('id',$auth->id) !!}
-
-<img src="{{ asset('/storage/images/' . $user_prof->images) }}">
-
-{{ $user_prof->username }}
-{{ $user_prof ->bio }}
-
-@if($followings->contains('follow_id',$user_prof->id))
-    <form action="/user/{id}/delete" method="POST">
-    {{ csrf_field() }}
-    <input type="hidden" name="id" value="{{$user_prof->id }}">
-    <button type="submit" class="btn btn-danger">フォロー解除</button>
-    </form>
-@else
-    <form action="/user/{id}/create" method="POST">
-    {{ csrf_field() }}
-    <input type="hidden" name="id" value="{{$user_prof->id }}">
-    <button type="submit" class="btn btn-primary">フォローする</button>
-    </form>
-@endif
+<div class="user-prof">
+    <img class="user-prof-img" src="{{ asset('/storage/images/' . $user_prof->images) }}">
+    <div class="user-prof-name">
+      <p class="user-prof-title">Name</p>
+      {{ $user_prof->username }}
+    </div>
+      <div class="user-prof-bio">
+        <p class="user-prof-title">Bio</p>
+        {{ $user_prof ->bio }}
+      </div>
+        <div class="user-prof-btn">
+          @if($followings->contains('follow_id',$user_prof->id))
+            <form action="/user/delete" method="POST">
+              {{ csrf_field() }}
+                <input type="hidden" name="id" value="{{$user_prof->id }}">
+                  <button type="submit" class="btn btn-danger">フォロー解除</button>
+            </form>
+          @else
+            <form action="/user/create" method="POST">
+              {{ csrf_field() }}
+                <input type="hidden" name="id" value="{{$user_prof->id }}">
+                  <button type="submit" class="btn btn-primary">フォローする</button>
+            </form>
+          @endif
+        </div>
+</div>
 
 @foreach($users as $user)
   <div class="tweet-list">
@@ -40,5 +45,7 @@
       <div class="tweet-post">
         {{ $user->post }}
       </div>
+    </div>
 @endforeach
+  </div>
 @endsection

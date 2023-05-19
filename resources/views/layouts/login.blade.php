@@ -25,7 +25,7 @@
 <body>
     <header class="top">
         <div id = "head">
-        <a href="/top"><img src="images/main_logo.png" alt="トップ画像"></a>
+        <a href="/top"><img src="/images/main_logo.png" alt="トップ画像"></a>
         </div>
         <div class="nav-area">
         <p class="nav-open">{{ $auth->username }}さん<img src="{{ asset('/storage/images/' . $auth->images) }}"></p>

@@ -364,3 +364,42 @@ nav {
 .following-area {
     width: 100px;
 }
+
+/* 自分のプロフィール画面 */
+.prof-title {
+    text-align: left;
+}
+
+/* 相手のプロフィール画面 */
+.user-prof {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 10px solid #C0C0C0;
+}
+
+.user-prof-img {
+    display: block;
+    text-align: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.user-prof-title {
+    display: flex;
+    width: 100px;
+    margin: 30px;
+}
+
+.user-prof-name {
+    display: flex;
+    text-align: left;
+    width: 100%;
+}
+
+.user-prof-bio {
+    display: flex;
+    text-align: left;
+    width: 100%;
+}
