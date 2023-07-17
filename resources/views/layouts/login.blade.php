@@ -65,6 +65,7 @@
                         <div class="user-search">
                         <p class="user-search-btn"><a href="/search">ユーザー検索</a></p>
                         </div>
+                        <a href="/test/{{ $auth->id }}">テスト</a>
                     </div>
                 </div>
             </div>

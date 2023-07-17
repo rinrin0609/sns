@@ -59,3 +59,4 @@ Route::post('post/update', 'PostsController@update');
 //フォローする、しない
 Route::post('/follow/create', 'UsersController@follow');
 Route::post('/follow/delete', 'UsersController@unfollow');
+Route::get('/test/{id}','PostsController@test');

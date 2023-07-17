@@ -347,22 +347,8 @@ nav {
     height: 30px;
 }
 
-.following-list {
-    display: flex;
-}
-
-.following-wrapper {
-    display: block;
-    width: 100%;
-}
-
 .following-status {
     display: flex;
-    width: 100%;
-}
-
-.following-area {
-    width: 100px;
 }
 
 /* 自分のプロフィール画面 */
@@ -402,4 +388,37 @@ nav {
     display: flex;
     text-align: left;
     width: 100%;
+}
+
+.user-tweet-username {
+    text-align: left;
+    font-size: 12px;
+    height: 12px;
+    width: 100px;
+    vertical-align: top;
+    flex-basis: 80%;
+}
+
+.user-post-status {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.user-post-wrapper {
+    display: block;
+    width: 100%;
+}
+
+.user-tweet-img {
+    width: 100px;
+    height: 100px;
+}
+
+.user-tweet-created-at {
+    font-size: 12px;
+    padding: 20px 10px 10px 0px;
+    height: 12px;
+    vertical-align: top;
+    flex-basis: 20%;
 }

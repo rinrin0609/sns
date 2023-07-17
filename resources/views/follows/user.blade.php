@@ -29,7 +29,7 @@
 </div>
 
 @foreach($users as $user)
-  <div class="tweet-list">
+<div class="tweet-list">
     <div class="tweet-img">
       <img class="profile-img" src="{{ asset('/storage/images/' . $user->images) }}">
     </div>
@@ -46,6 +46,6 @@
         {{ $user->post }}
       </div>
     </div>
+</div>
 @endforeach
-  </div>
 @endsection

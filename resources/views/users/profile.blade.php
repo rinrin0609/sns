@@ -22,7 +22,7 @@
               {{ Form::label('Password') }}
             </div>
               <div class="prof-pass">
-                {{ Form::password('password', $auth->password,['class' => 'prof-form-control', 'id' =>'password']) }}
+                {{ Form::input('password', 'password',$auth->password,['class' => 'prof-password', 'id' =>'password']) }}
               </div>
                 <div class="prof-title">
                   {{ Form::label('new Password') }}

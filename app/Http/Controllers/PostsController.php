@@ -55,7 +55,19 @@ class PostsController extends Controller
 
     public function follower_count(Request $request) {
     $id = $request->input('id');
-
     return view('/top',compact('id','follower_count'));
+    }
+
+    public function test($id) {
+        $test_id = DB::table('users')
+            ->where('id',$id)
+            ->first();
+        $tests = DB::table('posts')
+            ->leftjoin('users','users.id','=','posts.user_id')
+            ->where('posts.user_id','=', $id)
+            ->select('users.username','users.images','posts.post','posts.created_at')
+            ->get();
+        $auth = Auth::user();
+        return view('posts.test',compact('test_id','tests','auth'));
     }
 }

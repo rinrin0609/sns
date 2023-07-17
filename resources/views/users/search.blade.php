@@ -11,11 +11,12 @@
   </div>
 </div>
 
+
+@if(!$users->isEmpty())
 <div class="following-list">
-  @if(!$users->isEmpty())
+@foreach($users as $user)
     <div class="following-wrapper">
-  @foreach($users as $user)
-      <div class="tweet-img">
+      <div class="following-img">
           <img class="profile-img" src="{{ asset('/storage/images/' . $user->images) }}">
       </div>
           <div class="following-status">
@@ -27,22 +28,22 @@
                   <form action="/follow/delete" method="POST">
                     {{ csrf_field() }}
                       <input type="hidden" name="id" value="{{$user->id }}">
-                        <button type="submit" class="btn btn-danger">フォロー解除</button>
+                        <button type="submit" class="following-btn">フォロー解除</button>
                   </form>
               @else
                 <form action="/follow/create" method="POST">
                   {{ csrf_field() }}
                     <input type="hidden" name="id" value="{{$user->id }}">
-                      <button type="submit" class="btn btn-primary">フォローする</button>
+                      <button type="submit" class="following-btn">フォローする</button>
                 </form>
+              @endif
+              @else
+              @endif
             </div>
-            @endif
-            @else
-            @endif
+    </div>
             @endforeach
             @else
             <p>検索結果はありません</p>
             @endif
-  </div>
 </div>
 @endsection
